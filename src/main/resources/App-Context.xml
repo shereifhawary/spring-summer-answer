@@ -1,0 +1,27 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="springObject" class="java.lang.String">
+		<constructor-arg value="text data"></constructor-arg>
+	</bean>
+
+    <!-- I am an example for DI using setter method -->
+	<bean id="csvWriterWithSetter" class="com.orange.summer.ioc.spring.writer.impl.CsvWriter">
+		<property name="seperator" value="    " />
+	</bean>
+	
+	
+	<!-- I am an example for DI using Constractor injection -->
+	<bean id="csvWriterWithConstractor" class="com.orange.summer.ioc.spring.writer.impl.CsvWriter">
+		 <constructor-arg type="java.lang.String" value="|"/>
+	</bean>
+	
+	<bean id="htmlWriter" class="com.orange.summer.ioc.spring.writer.impl.HtmlWriter" />
+	
+	
+	<bean id="reader" class="com.orange.summer.ioc.spring.reader.Reader">
+		<property name="writer" ref="csvWriterWithConstractor" />
+	</bean>
+</beans>
